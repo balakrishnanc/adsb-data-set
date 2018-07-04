@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,300,400italic,500italic,300italic' rel='stylesheet' type='text/css'>
+    <link rel="Stylesheet" href="/Css/icomoon-fonts.css" type="text/css" />
+    <link rel="Stylesheet" href="/Css/bootstrap.min.css" type="text/css" />
+    <link rel="Stylesheet" href="/Css/bootstrap-vrs-theme.min.css" type="text/css" />
+    <link rel="Stylesheet" href="/Css/Site.css" type="text/css" />
+    <script src="/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/Scripts/site.js" type="text/javascript"></script>
+    <meta name="description" content="A stand-alone .NET application that displays output from an SBS-1 ADS-B receiver on a Google Maps web page." />
+    <meta name="keywords" content="virtual radar server, virtual radar, radar, ads-b, ads b, adsb, mode s, sbs-1, sbs-1er, sbs 1, sbs 1er, sbs, aircraft, radio, aircraft radio, plane spotting, planespotting, plane, spotting" />
+    
+    
+
+</head>
+<body id="body">
+    <div class="vrs-docs-header">
+        <div class="container">
+            <img class="logo" src="/Images/Logo.png" alt="Logo" title="Logo" />
+            <div class="links">
+                <div class="text-links">
+                    <a href="https://twitter.com/VRadarServer" target="external" title="Follow @VRadarServer on Twitter">
+                        <span class="icomoon-twitter"></span>
+                    </a>
+                    <a href="https://old.reddit.com/r/virtualradarserver" target="external" title="/r/virtualradarserver on Reddit">
+                        <span class="icomoon-reddit"></span>
+                    </a>
+                    <a href="https://github.com/vradarserver/vrs" target="external" title="Github Source">
+                        <span class="icomoon-github"></span>
+                    </a>
+                </div>
+            </div>
+            <h1>
+                Virtual Radar Server
+            </h1>
+            <p>
+                &nbsp;
+            </p>
+        </div>
+    </div>
+
+    <div id="vrs-navbar-affix-placeholder"></div>
+    <header class="navbar navbar-default navbar-static-top vrs-navbar-banner" role="banner" data-spy="affix">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#vrs-navbar" aria-controls="#vrs-navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    Virtual Radar Server
+                </a>
+            </div>
+            <nav id="vrs-navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Default.aspx">Home</a></li><li><a href="/Download.aspx">Download</a></li><li><a href="/Directory.aspx">Directory</a></li><li class="active"><a href="/Documentation/Default.aspx">Documentation</a></li><li><a href="/Mono.aspx">Linux</a></li><li><a href="/FlightRoutes.aspx">Routes</a></li><li><a href="/Credits.aspx">Credits</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://forum.virtualradarserver.co.uk/">Forums</a></li><li><a href="/Donate.aspx">Donate</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="page-container">
+        
+    <div class="container page">
+        <div class="col-md-3 scrollspy">
+            <nav id="sidebar" role="complementary" data-spy="affix">
+                <ul class="nav hidden-xs hidden-sm" data-site-jump-menu-target="">
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-9" role="main">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group btn-group-xs pull-right">
+                    <a href="/Documentation/Default.aspx" class="btn btn-default">Documentation</a>
+                    <a href="/Documentation/Formats/Default.aspx" class="btn btn-default">Formats</a>
+                    <button class="btn btn-success">AircraftList.json</button>
+                </div>
+            </div>
+        </div>
+        <p>&nbsp;</p>
+
+
+            <h1 class="page-header" data-site-jump-menu="" data-site-jump-menu-options="target: 'body'">
+                AircraftList.json
+            </h1>
+
+            <p>
+                This JSON file reports on the state of all of the aircraft tracked by a receiver or merged feed.
+            </p>
+
+            <h1 id="request" class="section-header" data-site-jump-menu="">Request</h1>
+            <p>
+                The address of the JSON file is <var>http://&lt;site-address&gt;/VirtualRadar/AircraftList.json</var>. The request uses query string parameters and
+                a custom header to pass information about the state of the site to the browser.
+            </p>
+            <p>
+                Virtual Radar Server will respond to both GET and POST requests for <var>AircraftList.json</var> but there is a caveat,
+                see <a href="#known-aircraft">Known Aircraft</a> for details.
+            </p>
+
+            <h2 id="query-string" data-site-jump-submenu="">Query string parameters</h2>
+
+            <p>
+                The names of query string parameters are case-insensitive. They are used to modify the output from AircraftList.json:
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                <thead>
+                    <tr><th>Name</th> <th>Value</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ldv</td>
+                        <td>
+                            The <em>lastDv</em> value from the last aircraft list fetched. Omit this if this is the first time you are fetching
+                            an aircraft list. The server will use this value and the <em>X-VirtualRadarServer-AircraftIds</em> header to figure
+                            out what has changed since the last time you fetched a list and will only send the changed information. If you do
+                            not supply these values then you are always sent a full aircraft list.
+                        </td>
+                    </tr>
+                    <tr>    <td>lat</td>            <td>The decimal latitude to measure distances and calculate bearings from. Omit if no distance or bearing calculations are to be made.</td></tr>
+                    <tr>    <td>lng</td>            <td>The decimal longitude to measure distances and calculate bearings from. Omit if no distance or bearing calculations are to be made.</td></tr>
+                    <tr>    <td>selAc</td>          <td>The ID of the selected aircraft, if any. Omit if no aircraft is selected.</td></tr>
+                    <tr>
+                        <td>trFmt</td> 
+                        <td>
+                            The format of trails that you want to be passed. Omit if you do not want trail history to be sent for each aircraft that is transmitting
+                            a position. The legal values for this parameter are <b>f</b> for a full trail, <b>fa</b> for a full trail with altitudes,
+                            <b>fs</b> for a full trail with speeds, <b>s</b> for a short trail, <b>sa</b> for a short trail with altitudes and <b>ss</b> for
+                            a short trail with speeds. Short trails only show the last 30 seconds of positions. The duration of a short trail can be changed in
+                            the server settings.
+                        </td>
+                    </tr>
+                    <tr>    <td>refreshTrails</td>  <td>Set to 1 to force the server to send the entire trail for each aircraft. If this is missing or 0 then the server will try to only send new positions for the trail.</td></tr>
+                    <tr>    <td>feed</td>           <td>The ID of the feed whose aircraft list you want to see. If missing or invalid then the default feed is used - this is configured on the server.</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <p>
+                Filters can be passed as query string parameters to constrain the results to just those aircraft that match some condition. Multiple filters
+                can be passed but only one of each kind of filter can be passed - for example, if you pass two callsign filters then only one of them will be
+                honoured.
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                <thead>
+                    <tr><th>Prefix</th> <th>Filter Type</th> <th>Value</th></tr>
+                </thead>
+                <tbody>
+                    <tr>    <td>fAir</td>   <td>String</td>         <td>The to / from / via airport code</td></tr>
+                    <tr>    <td>fAlt</td>   <td>Integer range</td>  <td>Altitude in feet</td></tr>
+                    <tr>    <td>fCall</td>  <td>String</td>         <td>Callsign</td></tr>
+                    <tr>    <td>fCou</td>   <td>String</td>         <td>Country</td></tr>
+                    <tr>    <td>fDst</td>   <td>Number range</td>  <td>Distance in kilometres</td></tr>
+                    <tr>    <td>fEgt</td>   <td>Enum</td>           <td>Engine type</td></tr>
+                    <tr>    <td>fNoPos</td> <td>Boolean</td>        <td>No position transmitted</td></tr>
+                    <tr>    <td>fIco</td>   <td>String</td>         <td>ICAO</td></tr>
+                    <tr>    <td>fMil</td>   <td>Boolean</td>        <td>Is military</td></tr>
+                    <tr>    <td>fTyp</td>   <td>String</td>         <td>Model ICAO code</td></tr>
+                    <tr>    <td>fOp</td>    <td>String</td>         <td>Operator name</td></tr>
+                    <tr>    <td>fOpIcao</td><td>String</td>         <td>Operator ICAO code</td></tr>
+                    <tr>    <td>fReg</td>   <td>String</td>         <td>Registration</td></tr>
+                    <tr>    <td>fSpc</td>   <td>Enum</td>           <td>Aircraft species</td></tr>
+                    <tr>    <td>fSqk</td>   <td>Intger range</td>   <td>Squawk</td></tr>
+                    <tr>    <td>fInt</td>   <td>Boolean</td>        <td>Is flagged as interesting in database</td></tr>
+                    <tr>    <td>fWtc</td>   <td>Enum</td>           <td>Wake turbulence category</td></tr>
+                    <tr>    <td>fUt</td>    <td>String</td>         <td>User tag</td></tr>
+                    <tr>    <td>fNBnd</td>  <td>Bounds</td>         <td>The top-most latitude of the bounds. Only returns aircraft within these bounds.</td></tr>
+                    <tr>    <td>fSBnd</td>  <td>Bounds</td>         <td>The bottom-most latitude of the bounds. Only returns aircraft within these bounds.</td></tr>
+                    <tr>    <td>fWBnd</td>  <td>Bounds</td>         <td>The left-most longitude of the bounds. Only returns aircraft within these bounds.</td></tr>
+                    <tr>    <td>fEBnd</td>  <td>Bounds</td>         <td>The right-most longitude of the bounds. Only returns aircraft within these bounds.</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <p>
+                All filters (except the Bounds filters) are passed with a name that consists of a prefix and then a single-character code that describes the condition.
+                If the condition is negated / reversed (e.g. NOT equal to) then a suffix of N is also appended. The full list of conditions is as-per below:
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr><th>Condition</th> <th>Suffix Character</th> <th>Filter Types That Can Use It</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>    <td>Between - lower</td>    <td>L</td>  <td>Number range</td></tr>
+                        <tr>    <td>Between - upper</td>    <td>U</td>  <td>Number range</td></tr>
+                        <tr>    <td>Contains</td>           <td>C</td>  <td>String</td></tr>
+                        <tr>    <td>Ends with</td>          <td>E</td>  <td>String</td></tr>
+                        <tr>    <td>Equals</td>             <td>Q</td>  <td>String, Boolean, Enum</td></tr>
+                        <tr>    <td>Starts with</td>        <td>S</td>  <td>String</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                When a range has both an upper and a lower bound then two query string parameters need to be passed, one for the upper and one
+                for the lower. If one part of the range is negated (i.e. it has an N suffix) then the other part must also be negated.
+            </p>
+            <p>
+                The order in which filter parameters are passed has no effect, an aircraft must match all of the filters in order for it to
+                pass. In effect the filters are ANDed together. If the aircraft does not have a value for a particular filter type (e.g. you
+                filter against a callsign and the aircraft has no callsign) then it will only match against filters that have no value (e.g.
+                <b>fCallQ=</b>) or filters that are negated (e.g. <b>fCallQN=BAW1</b>).
+            </p>
+            <p>
+                The Enum filter values are the enum to match (or not match) against. The enums are strings described in the JavaScript file
+                <code>enums.js</code>. Boolean filters should pass 0 for false, 1 for true or nothing for undefined.
+            </p>
+            <p>
+                The four parameters that make up the Bounds filter do not accept a condition. If you supply one of the bounds then you must supply
+                all of them and the effect will be to only return aircraft that have a position within those bounds. If you supply the selected
+                aircraft ID in <em>selAc</em> then the selected aircraft will always returned in an aircraft list that has been constrained to a
+                Bounds, even if the selected aircraft isn't within the bounds that you supply.
+            </p>
+
+            <p>
+                All of the filters are case insensitive.
+            </p>
+
+            <p>
+                So for example, if you wanted to constrain the list to only aircraft whose model ICAO type code starts with &quot;A38&quot; then
+                you would pass a filter parameter of <b>fTypeS=A38</b>. If you want to filter just to those aircraft whose model ICAO type code
+                does <em>not</em> start with &quot;A38&quot; then you would pass <b>fTypSN=A38</b>. If you wanted to filter to just those aircraft
+                that do not have a model ICAO type code then you would pass <b>fTypQ=</b>, and similarly if you only wanted aircraft that have
+                something, anything, for a model ICAO type code then it'd be <b>fTypQN=</b>.
+            </p>
+
+            <h2 id="known-aircraft" data-site-jump-submenu="">
+                Known Aircraft
+            </h2>
+            <p>
+                When a browser first opens the map page it sends a request for an <var>AircraftList.json</var> that contains everything that the
+                site knows about every aircraft being tracked.
+            </p>
+            <p>
+                For the second and subsequent requests the site tells the server which aircraft identifiers it now knows about. The server uses
+                this information along with the <var>ldv</var> query string value to avoid resending information that has not changed. It uses
+                these values to reduce the bandwidth for the second and subsequent requests.
+            </p>
+            <p>
+                The &quot;known aircraft&quot; list is a list of aircraft identifiers. There are two ways that you can send the list to the server:
+                the old way and the new way.
+            </p>
+
+            <h3>
+                The old way
+            </h3>
+            <p>
+                The old way was to create a comma-separated list of aircraft identifiers (their numerical <var>UniqueID</var> identifiers, not
+                the six character ICAO identifier) and send that in a header called <b>X-VirtualRadarServer-AircraftIds</b>.
+            </p>
+            <p>
+                If you are sending a GET request then this is the only way that you can tell the server about known aircraft.
+            </p>
+
+            <h3>
+                The new way
+            </h3>
+            <p>
+                The new way is to send a POST request rather than a GET and to send the known aircraft identifiers as a standard URL encoded
+                form field in the body. The field is called <var>icaos</var>. The field value should be a hyphen separated list of six
+                character ICAO hex codes for every known aircraft.
+            </p>
+            <p>
+                Virtual Radar Server has been using the new mechanism since version 2.2 but it continues to support both methods.
+            </p>
+
+
+            <h1 id="response" class="section-header" data-site-jump-menu="">Response</h1>
+
+            <p>
+                The response is a JSON file. The first response will always contain everything that it knows about every aircraft that passes the filters
+                (if any were supplied). Subsequent fetches will only return information that has changed, unless you fail to pass the correct <em>ldv</em>
+                query parameter and <em>Known Aircraft</em> list.
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                    <thead>
+                        <tr><th>Property</th>   <th>Type</th>   <th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>    <td>lastDv</td>         <td>Number</td>             <td>Identifies the version of the aircraft list. Pass this in the <em>ldv</em> query string parameter on the next fetch.</td></tr>
+                        <tr>    <td>totalAc</td>        <td>Number</td>             <td>The total number of aircraft tracked by the list. This can be larger than the rows in <em>acList</em> if the list has been filtered.</td></tr>
+                        <tr>    <td>src</td>            <td>Number</td>             <td>The source that the feed is working from. <b>0</b> = unknown, <b>1</b> = receiver, <b>2</b> = a fake receiver (only used in testing) and <b>3</b> = Flight Simulator X.</td></tr>
+                        <tr>    <td>showSil</td>        <td>Boolean</td>            <td>True if the server has a silhouettes folder configured. No longer used.</td></tr>
+                        <tr>    <td>showFlg</td>        <td>Boolean</td>            <td>True if the server has an operator flags folder configured. No longer used.</td></tr>
+                        <tr>    <td>showPic</td>        <td>Boolean</td>            <td>True if the server has a pictures folder configured. No longer used.</td></tr>
+                        <tr>    <td>flgW</td>           <td>Number</td>             <td>Pixel width of all flags. No longer used, now configured in JavaScript.</td></tr>
+                        <tr>    <td>flgH</td>           <td>Number</td>             <td>Pixel height of all flags. No longer used, now configured in JavaScript.</td></tr>
+                        <tr>    <td>shtTrlSec</td>      <td>Number</td>             <td>The number of seconds of positions that short trails contain.</td></tr>
+                        <tr>    <td>stm</td>            <td>Number</td>             <td>The server time at UTC in JavaScript ticks.</td></tr>
+                        <tr>    <td>acList</td>         <td>Array</td>              <td>The aircraft list. See below.</td></tr>
+                        <tr>    <td>feeds</td>          <td>Array</td>              <td>A list of every feed configured on the server. The feed object is <code>{ id: integer, name: string }</code>.</td></tr>
+                        <tr>    <td>srcFeed</td>        <td>Number</td>             <td>The ID of the feed that was used to generate the list.</td></tr>
+                        <tr>    <td>configChanged</td>  <td>Boolean</td>            <td>True if the server configuration has been changed since the last fetch.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>
+                The <em>acList</em> is an array of objects where each object describes an aircraft being tracked by the server. If the request supplied filter
+                parameters then only the aircraft that passed the filter are shown. Many of the properties of an aircraft are optional - if they are marked as
+                such then they are not passed if they have not changed since the last time the aircraft list was fetched (see the <em>ldv</em> query string
+                parameter and <em>X-VirtualRadarServer-AircraftIds</em> header.
+            </p>
+
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                <thead>
+                    <tr><th>Property</th>           <th>Type</th>   <th>Optional</th>   <th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr>    <td>Id</td>             <td>Number</td>     <td>No</td>     <td>The unique identifier of the aircraft.</td></tr>
+                    <tr>    <td>TSecs</td>          <td>Number</td>     <td>No</td>     <td>The number of seconds that the aircraft has been tracked for.</td></tr>
+                    <tr>    <td>Rcvr</td>           <td>Number</td>     <td>No</td>     <td>The ID of the feed that last supplied information about the aircraft. Will be different to <em>srcFeed</em> if the source is a merged feed.</td></tr>
+                    <tr>    <td>Icao</td>           <td>String</td>     <td>Yes</td>    <td>The ICAO of the aircraft.</td></tr>
+                    <tr>    <td>Bad</td>            <td>Boolean</td>    <td>Yes</td>    <td>True if the ICAO is known to be invalid. This information comes from the local BaseStation.sqb database.</td></tr>
+                    <tr>    <td>Reg</td>            <td>String</td>     <td>Yes</td>    <td>The registration.</td></tr>
+                    <tr>    <td>Alt</td>            <td>Number</td>     <td>Yes</td>    <td>The altitude in feet at standard pressure.</td></tr>
+                    <tr>    <td>GAlt</td>           <td>Number</td>     <td>Yes</td>    <td>The altitude adjusted for local air pressure, should be roughly the height above mean sea level.</td></tr>
+                    <tr>    <td>InHg</td>           <td>Number</td>     <td>Yes</td>    <td>The air pressure in inches of mercury that was used to calculate the AMSL altitude from the standard pressure altitude.</td></tr>
+                    <tr>    <td>AltT</td>           <td>Number</td>     <td>Yes</td>    <td>The type of altitude transmitted by the aircraft: <b>0</b> = standard pressure altitude, <b>1</b> = indicated altitude (above mean sea level). Default to standard pressure altitude until told otherwise.</td></tr>
+                    <tr>    <td>TAlt</td>           <td>Number</td>     <td>Yes</td>    <td>The target altitude, in feet, set on the autopilot / FMS etc.</td></tr>
+                    <tr>    <td>Call</td>           <td>String</td>     <td>Yes</td>    <td>The callsign.</td></tr>
+                    <tr>    <td>CallSus</td>        <td>Boolean</td>    <td>Yes</td>    <td>True if the callsign may not be correct.</td></tr>
+                    <tr>    <td>Lat</td>            <td>Float</td>      <td>Yes</td>    <td>The aircraft's latitude over the ground.</td></tr>
+                    <tr>    <td>Long</td>           <td>Float</td>      <td>Yes</td>    <td>The aircraft's longitude over the ground.</td></tr>
+                    <tr>    <td>PosTime</td>        <td>Number</td>     <td>Yes</td>    <td>The time (at UTC in JavaScript ticks) that the position was last reported by the aircraft.</td></tr>
+                    <tr>    <td>Mlat</td>           <td>Boolean</td>    <td>Yes</td>    <td>True if the latitude and longitude appear to have been calculated by an MLAT server and were not transmitted by the aircraft.</td></tr>
+                    <tr>    <td>PosStale</td>       <td>Boolean</td>    <td>Yes</td>    <td>True if the last position update is older than the display timeout value - usually only seen on MLAT aircraft in merged feeds.</td></tr>
+                    <tr>    <td>IsTisb</td>         <td>Boolean</td>    <td>Yes</td>    <td>True if the last message received for the aircraft was from a TIS-B source.</td></tr>
+                    <tr>    <td>Spd</td>            <td>Number</td>     <td>Yes</td>    <td>The ground speed in knots.</td></tr>
+                    <tr>    <td>SpdTyp</td>         <td>Number</td>     <td>Yes</td>    <td>The type of speed that <em>Spd</em> represents. Only used with raw feeds. <b>0/missing</b> = ground speed, <b>1</b> = ground speed reversing, <b>2</b> = indicated air speed, <b>3</b> = true air speed.</td></tr>
+                    <tr>    <td>Vsi</td>            <td>Number</td>     <td>Yes</td>    <td>Vertical speed in feet per minute.</td></tr>
+                    <tr>    <td>VsiT</td>           <td>Number</td>     <td>Yes</td>    <td><b>0</b> = vertical speed is barometric, <b>1</b> = vertical speed is geometric. Default to barometric until told otherwise.</td></tr>
+                    <tr>    <td>Trak</td>           <td>Number</td>     <td>Yes</td>    <td>Aircraft's track angle across the ground clockwise from 0&deg; north.</td></tr>
+                    <tr>    <td>TrkH</td>           <td>Boolean</td>    <td>Yes</td>    <td>True if Trak is the aircraft's heading, false if it's the ground track. Default to ground track until told otherwise.</td></tr>
+                    <tr>    <td>TTrk</td>           <td>Number</td>     <td>Yes</td>    <td>The track or heading currently set on the aircraft's autopilot or FMS.</td></tr>
+                    <tr>    <td>Type</td>           <td>String</td>     <td>Yes</td>    <td>The aircraft model's ICAO type code.</td></tr>
+                    <tr>    <td>Mdl</td>            <td>String</td>     <td>Yes</td>    <td>A description of the aircraft's model. Usually also includes the manufacturer's name.</td></tr>
+                    <tr>    <td>Man</td>            <td>String</td>     <td>Yes</td>    <td>The manufacturer's name.</td></tr>
+                    <tr>    <td>CNum</td>           <td>String</td>     <td>Yes</td>    <td>The aircraft's construction or serial number.</td></tr>
+                    <tr>    <td>From</td>           <td>String</td>     <td>Yes</td>    <td>The code and name of the departure airport.</td></tr>
+                    <tr>    <td>To</td>             <td>String</td>     <td>Yes</td>    <td>The code and name of the arrival airport.</td></tr>
+                    <tr>    <td>Stops</td>          <td>String[]</td>   <td>Yes</td>    <td>An array of strings, each being a stopover on the route.</td></tr>
+                    <tr>    <td>Op</td>             <td>String</td>     <td>Yes</td>    <td>The name of the aircraft's operator.</td></tr>
+                    <tr>    <td>OpCode</td>         <td>String</td>     <td>Yes</td>    <td>The operator's ICAO code.</td></tr>
+                    <tr>    <td>Sqk</td>            <td>Number</td>     <td>Yes</td>    <td>The squawk as a decimal number (e.g. a squawk of 7654 is passed as 7654, not 4012).</td></tr>
+                    <tr>    <td>Help</td>           <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft is transmitting an emergency squawk.</td></tr>
+                    <tr>    <td>Dst</td>            <td>Number</td>     <td>Yes</td>    <td>The distance to the aircraft in kilometres.</td></tr>
+                    <tr>    <td>Brng</td>           <td>Number</td>     <td>Yes</td>    <td>The bearing from the browser to the aircraft clockwise from 0&deg; north.</td></tr>
+                    <tr>    <td>WTC</td>            <td>Enum</td>       <td>Yes</td>    <td>The wake turbulence category of the aircraft - see enums.js for values.</td></tr>
+                    <tr>    <td>Engines</td>        <td>String</td>     <td>Yes</td>    <td>The number of engines the aircraft has. Usually '1', '2' etc. but can also be a string - see ICAO documentation.</td></tr>
+                    <tr>    <td>EngType</td>        <td>Enum</td>       <td>Yes</td>    <td>The type of engine the aircraft uses - see enums.js for values.</td></tr>
+                    <tr>    <td>EngMount</td>       <td>Enum</td>       <td>Yes</td>    <td>The placement of engines on the aircraft - see enums.js for values.</td></tr>
+                    <tr>    <td>Species</td>        <td>Enum</td>       <td>Yes</td>    <td>The species of the aircraft (helicopter, jet etc.) - see enums.js for values.</td></tr>
+                    <tr>    <td>Mil</td>            <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft appears to be operated by the military.</td></tr>
+                    <tr>    <td>Cou</td>            <td>String</td>     <td>Yes</td>    <td>The country that the aircraft is registered to.</td></tr>
+                    <tr>    <td>HasPic</td>         <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft has a picture associated with it.</td></tr>
+                    <tr>    <td>PicX</td>           <td>Number</td>     <td>Yes</td>    <td>The width of the picture in pixels.</td></tr>
+                    <tr>    <td>PicY</td>           <td>Number</td>     <td>Yes</td>    <td>The height of the picture in pixels.</td></tr>
+                    <tr>    <td>FlightsCount</td>   <td>Number</td>     <td>Yes</td>    <td>The number of Flights records the aircraft has in the database.</td></tr>
+                    <tr>    <td>CMsgs</td>          <td>Number</td>     <td>Yes</td>    <td>The count of messages received for the aircraft.</td></tr>
+                    <tr>    <td>Gnd</td>            <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft is on the ground.</td></tr>
+                    <tr>    <td>Tag</td>            <td>String</td>     <td>Yes</td>    <td>The user tag found for the aircraft in the BaseStation.sqb local database.</td></tr>
+                    <tr>    <td>Interested</td>     <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft is flagged as interesting in the BaseStation.sqb local database.</td></tr>
+                    <tr>    <td>TT</td>             <td>String</td>     <td>Yes</td>    <td>Trail type - empty for plain trails, 'a' for trails that include altitude, 's' for trails that include speed.</td></tr>
+                    <tr>    <td>Trt</td>            <td>Number</td>     <td>Yes</td>    <td>Transponder type - <b>0</b>=Unknown, <b>1</b>=Mode-S, <b>2</b>=ADS-B (unknown version), <b>3</b>=ADS-B 0, <b>4</b>=ADS-B 1, <b>5</b>=ADS-B 2.</td></tr>
+                    <tr>    <td>Year</td>           <td>String</td>     <td>Yes</td>    <td>The year that the aircraft was manufactured.</td></tr>
+                    <tr>    <td>Sat</td>            <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft has been seen on a SatCom ACARS feed (e.g. a JAERO feed).</td></tr>
+                    <tr>    <td>Cos</td>            <td>Array</td>      <td>Yes</td>    <td>Short trails - see <a href="#note1">note 1</a>.</td></tr>
+                    <tr>    <td>Cot</td>            <td>Array</td>      <td>Yes</td>    <td>Full trails - see <a href="#note2">note 2</a>.</td></tr>
+                    <tr>    <td>ResetTrail</td>     <td>Boolean</td>    <td>Yes</td>    <td>True if the entire trail has been sent and the JavaScript should discard any existing trail history it's built up for the aircraft.</td></tr>
+                    <tr>    <td>HasSig</td>         <td>Boolean</td>    <td>Yes</td>    <td>True if the aircraft has a signal level associated with it.</td></tr>
+                    <tr>    <td>Sig</td>            <td>Number</td>     <td>Yes</td>    <td>The signal level for the last message received from the aircraft, as reported by the receiver. Not all receivers pass signal levels. The value's units are receiver-dependent.</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h3 id="note1" data-site-jump-submenu="">Note 1 - Short Trails (Cos)</h3>
+            <p>Short trails are a list of values that represent the positions that the aircraft has been seen in over so-many seconds (by default 30 seconds).</p>
+            <p>
+                The array is an array of numbers. The numbers are arranged in groups of either 3 or 4, depending on whether just positions are being sent or
+                whether the altitude or speed is also being sent.
+            </p>
+            <p>
+                If just positions are being sent (<em>TT</em> is empty or missing) then the first value is latitude, the second value is longitude and the third
+                is the server time that the position was seen at UTC in JavaScript ticks.
+            </p>
+            <p>
+                If altitude or speeds are also being sent (<em>TT</em> is either 'a' for altitude or 's' for speed) then the first value is latitude, the second
+                longitude, the third is server time and the fourth is either altitude or speed.
+            </p>
+            <p>
+                The first group of values represents the earliest position in the trail while the last group represents the latest position in the trail. If
+                <em>ResetTrail</em> is true then the array contains the entire trail over the last 30 seconds, otherwise it just holds the coordinates added to
+                the trail since you last fetched the aircraft list.
+            </p>
+            <p>
+                To look at it another way, if Cos is an array of n numbers and <em>TT</em> is an empty string then the values represent:
+            </p>
+            <div class="table-responsive">
+                <table class="table table-condensed table-striped">
+                    <tr>    <td>[0]</td>    <td>Latitude of earliest coordinate</td></tr>
+                    <tr>    <td>[1]</td>    <td>Longitude of earliest coordinate</td></tr>
+                    <tr>    <td>[2]</td>    <td>Time of earliest coordinate</td></tr>
+                    <tr>    <td colspan="2">...</td></tr>
+                    <tr>    <td>[n-3]</td>  <td>Latitude of latest coordinate</td></tr>
+                    <tr>    <td>[n-2]</td>  <td>Longitude of latest coordinate</td></tr>
+                    <tr>    <td>[n-1]</td>  <td>Time of latest coordinate</td></tr>
+                </table>
+            </div>
+            <h3 id="note2" data-site-jump-submenu="">Note 2 - Full Trails (Cot)</h3>
+            <p>Full trails are a list of values that represent the positions that the aircraft has been seen in since it was first picked up.</p>
+            <p>
+                The array is an array of numbers. It's very similar to short trails (see <a href="#note1">Note 1 - Cos</a> above) except that instead
+                of being sent the server time you are sent the heading of the aircraft at each coordinate. The idea is that the full track only shows
+                the position the aircraft was in when its heading changed, so that if an aircraft travels in a straight line across the map then it
+                can be described with just two positions - its start position and its end position - rather than hundreds of positions that together
+                end up describing a straight line.
+            </p>
+            <p>
+                With that in mind, if just positions are being sent (<em>TT</em> is empty or missing) then the first value is latitude, the second value
+                is longitude and the third is the heading angle (see <em>Trak</em>) that the aircraft was pointing in when it was at that position.
+            </p>
+            <p>
+                If altitude or speeds are also being sent (<em>TT</em> is either 'a' for altitude or 's' for speed) then the first value is latitude, the second
+                longitude, the third is heading and the fourth is either altitude or speed.
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.pageHandler = new WebSite.PageHandler('Virtual Radar Server', 'AircraftList.json format');
+    </script>
+
+    </div>
+    <footer class="vrs-docs-footer" role="contentinfo">
+        <div class="container">
+            <p class="links">
+                <a href='mailto:andrew@virtualradarserver.co.uk'>andrew@virtualradarserver.co.uk</a>
+                &nbsp;: :&nbsp;
+                <a href="PrivacyPolicy.aspx">Privacy</a>
+            </p>
+            <p class="copyright">Copyright &copy; Andrew Whewell 2010 onwards</p>
+            <div class="links">
+                <div class="text-links">
+                    <a href="https://twitter.com/VRadarServer" target="external" title="Follow @VRadarServer on Twitter">
+                        <span class="icomoon-twitter"></span>
+                    </a>
+                    <a href="https://www.reddit.com/r/virtualradarserver" target="external" title="/r/virtualradarserver on Reddit">
+                        <span class="icomoon-reddit"></span>
+                    </a>
+                    <a href="https://github.com/vradarserver/vrs" target="external" title="Github Source">
+                        <span class="icomoon-github"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-3716436-6");
+            pageTracker._setDomainName("none");
+            pageTracker._setAllowLinker(true);
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+</body>
+</html>

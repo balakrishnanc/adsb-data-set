@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta name="referrer" content="origin">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<title>Accessing Data Collected by ADS-B Exchange &#8211; ADS-B Exchange</title>
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="ADS-B Exchange &raquo; Feed" href="https://www.adsbexchange.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ADS-B Exchange &raquo; Comments Feed" href="https://www.adsbexchange.com/comments/feed/" />
+<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.adsbexchange.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=7ea90f51a940de754fba986f15780e9a"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='contact-form-7-css' href='https://www.adsbexchange.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.7' type='text/css' media='all' />
+<link rel='stylesheet' id='i-agree-popups-css' href='https://www.adsbexchange.com/wp-content/plugins/i-agree-popups/includes/assets/css/i-agree-popups.css?ver=7ea90f51a940de754fba986f15780e9a' type='text/css' media='screen' />
+<link rel='stylesheet' id='catchresponsive-parent-style-css' href='https://www.adsbexchange.com/wp-content/themes/catch-responsive/style.css?ver=7ea90f51a940de754fba986f15780e9a' type='text/css' media='all' />
+<link rel='stylesheet' id='catchresponsive-fonts-css' href='//fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CDroid+Sans%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='catchresponsive-style-css' href='https://www.adsbexchange.com/wp-content/themes/catch-responsive-child/style.css?ver=7ea90f51a940de754fba986f15780e9a' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css' href='https://www.adsbexchange.com/wp-content/themes/catch-responsive/css/genericons/genericons.css?ver=3.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-sidr-css' href='https://www.adsbexchange.com/wp-content/themes/catch-responsive/css/jquery.sidr.light.min.css?ver=2.1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='recent-posts-widget-with-thumbnails-public-style-css' href='https://www.adsbexchange.com/wp-content/plugins/recent-posts-widget-with-thumbnails/public.css?ver=5.0' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/html5.min.js?ver=3.7.3'></script>
+<![endif]-->
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/jquery.sidr.min.js?ver=2.2.1.1'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/catchresponsive-custom-scripts.min.js'></script>
+<link rel='https://api.w.org/' href='https://www.adsbexchange.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.adsbexchange.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.adsbexchange.com/wp-includes/wlwmanifest.xml" />
+<link rel="canonical" href="https://www.adsbexchange.com/data/" />
+<link rel='shortlink' href='https://www.adsbexchange.com/?p=1690' />
+<link rel="alternate" type="application/json+oembed" href="https://www.adsbexchange.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.adsbexchange.com%2Fdata%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.adsbexchange.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.adsbexchange.com%2Fdata%2F&#038;format=xml" />
+<script type="text/javascript">
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		if (window.wfLogHumanRan) { return; }
+		window.wfLogHumanRan = true;
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//www.adsbexchange.com/?wordfence_lh=1&hid=3E40C63DC0BE208DBFC0B55715273B0F');
+</script><meta name="referrer" content="origin" />
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("https://www.adsbexchange.com/wp-content/themes/catch-responsive/images/body-bg.jpg"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: scroll; }
+</style>
+<link rel="icon" href="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-1-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-1-270x270.png" />
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-69114603-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+<body class="page-template-default page page-id-1690 custom-background wp-custom-logo two-columns content-left excerpt-image-left mobile-menu-one">
+<div id="page" class="hfeed site">
+<header id="masthead" role="banner">
+<div class="wrapper">
+<div id="mobile-header-left-menu" class="mobile-menu-anchor primary-menu">
+<a href="#mobile-header-left-nav" id="header-left-menu" class="genericon genericon-menu">
+<span class="mobile-menu-text">Menu</span>
+</a>
+</div>
+<div id="site-branding" class="logo-left">
+<div id="site-logo"><a href="https://www.adsbexchange.com/" class="custom-logo-link" rel="home" itemprop="url"><img width="48" height="48" src="https://www.adsbexchange.com/wp-content/uploads/cropped-Stealth-48px.png" class="custom-logo" alt="" itemprop="logo" /></a></div><div id="site-header"><p class="site-title"><a href="https://www.adsbexchange.com/" rel="home">ADS-B Exchange</a></p><p class="site-description">World&#039;s largest co-op of unfiltered flight data</p></div></div> <aside class="sidebar sidebar-header-right widget-area">
+<section class="widget widget_search" id="header-right-search">
+<div class="widget-wrap">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:700px;height:90px" data-ad-client="ca-pub-3888666500943436" data-ad-slot="3808410905"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</section>
+</aside>
+</div>
+</header>
+<nav class="nav-primary search-enabled" role="navigation">
+<div class="wrapper">
+<h2 class="screen-reader-text">Primary Menu</h2>
+<div class="screen-reader-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+<ul id="menu-main-menu" class="menu catchresponsive-nav-menu"><li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-24"><a href="https://www.adsbexchange.com/">Home</a></li>
+<li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25"><a href="https://www.adsbexchange.com/how-to-feed/">How to feed</a>
+<ul class="sub-menu">
+<li id="menu-item-153" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="https://www.adsbexchange.com/how-to-feed/">Getting Started</a></li>
+<li id="menu-item-899" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-899"><a href="https://www.adsbexchange.com/how-to-feed-from-vrs/">How to Feed from VRS</a></li>
+<li id="menu-item-2941" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2941"><a href="https://www.adsbexchange.com/how-to-feed/setup-instructions-for-rpi-kits/">Setup Instructions for RPi Kits</a></li>
+<li id="menu-item-17932" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17932"><a href="https://www.adsbexchange.com/how-to-feed/custom-feed-how-to/">Setup a Custom Feed</a></li>
+<li id="menu-item-1323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323"><a href="https://www.adsbexchange.com/active-feeds/">Feeder Statistics</a></li>
+</ul>
+</li>
+<li id="menu-item-65" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a href="https://www.adsbexchange.com/forum/">Forum</a></li>
+<li id="menu-item-28" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28"><a href="//global.adsbexchange.com/VirtualRadar">Global Radar View</a></li>
+<li id="menu-item-1047" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1047"><a href="//www.adsbexchange.com/currently-airborne-interesting-aircraft/">Other Tracking Info</a>
+<ul class="sub-menu">
+<li id="menu-item-3399" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3399"><a href="https://flight-data.adsbexchange.com">Flight History Data</a></li>
+<li id="menu-item-1046" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1046"><a href="https://www.adsbexchange.com/airborne-military-aircraft/">Currently Airborne Military Aircraft</a></li>
+<li id="menu-item-3288" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3288"><a href="https://customglobal.adsbexchange.com/VirtualRadar/">Custom Feeds</a>
+<ul class="sub-menu">
+<li id="menu-item-17933" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17933"><a href="https://www.adsbexchange.com/how-to-feed/custom-feed-how-to/">Custom Feed – How To</a></li>
+</ul>
+</li>
+<li id="menu-item-1045" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1045"><a href="https://www.adsbexchange.com/currently-airborne-interesting-aircraft/">Currently Airborne “Interesting” Aircraft</a></li>
+<li id="menu-item-17936" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17936"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfaiXSFenmu9CPy1fscLaROARUXkqDrziiw6Iu3-GRNTW0CMg/viewform?usp=sf_link">Submit Aircraft Pictures</a></li>
+</ul>
+</li>
+<li id="menu-item-1757" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1690 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1757"><a href="https://www.adsbexchange.com/data/">Data</a>
+<ul class="sub-menu">
+<li id="menu-item-3396" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3396"><a href="https://www.adsbexchange.com/data">Data Downloads and API</a></li>
+<li id="menu-item-3397" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3397"><a href="https://www.adsbexchange.com/redshift">Redshift SQL Database</a></li>
+<li id="menu-item-3398" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3398"><a href="https://www.adsbexchange.com/datafields/">Data Field Descriptions</a></li>
+</ul>
+</li>
+<li id="menu-item-188" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-188"><a href="https://www.adsbexchange.com/contact/">About</a>
+<ul class="sub-menu">
+<li id="menu-item-2155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2155"><a href="https://www.adsbexchange.com/enhancements/">Future Enhancements</a></li>
+<li id="menu-item-211" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-211"><a href="https://www.adsbexchange.com/donate/">Support ADSBexchange</a></li>
+<li id="menu-item-207" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-207"><a href="https://www.adsbexchange.com/contact/">Contact</a></li>
+<li id="menu-item-1500" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1500"><a href="https://www.adsbexchange.com/legal-and-privacy/">Legal and Privacy</a></li>
+</ul>
+</li>
+</ul> <div id="search-toggle" class="genericon">
+<a class="screen-reader-text" href="#search-container">Search</a>
+</div>
+<div id="search-container" class="displaynone">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:700px;height:90px" data-ad-client="ca-pub-3888666500943436" data-ad-slot="3808410905"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+</nav>
+ <div id="content" class="site-content">
+<div class="wrapper">
+<main id="main" class="site-main" role="main">
+<article id="post-1690" class="post-1690 page type-page status-publish hentry">
+ <div class="entry-container">
+<header class="entry-header">
+<h1 class="entry-title">Accessing Data Collected by ADS-B Exchange</h1>
+</header>
+<div class="entry-content">
+<p>In addition to the browsable map of real-time data, ADS-B Exchange is also making available historical and real-time data for personal/non-profit use at no cost. Of course, if you find this data useful, or just want to see it&#8217;s distribution continue, we would appreciate any <a href="https://www.adsbexchange.com/donate">donations</a>, especially <strong>monthly recurring donations</strong> to fund the ongoing operation of the site. This data would cost a ton of money to buy elsewhere, believe me.</p>
+<p>As noted in the legal terms and conditions, commercial use requires written authorization from ADS-B Exchange.  This is necessary to ensure operating this site remains financially viable so we can continue to provide the service.  We may ask that certain commercial users contribute financially to the operation of this site if they desire to use the data in revenue-generating products.</p>
+<p>This service could end at any time if the cost to provide it outweighs incoming revenue/donations.  Please keep that in mind when downloading data/using this service &#8211; go easy on the infrastructure if you can. There are quite a few hosting/bandwidth/storage costs for a large and growing dataset such as we have here.</p>
+<hr />
+<h4 id="#query">Querying Live Position Data</h4>
+<p>Live position data can be queried with various parameters are results returned in a JSON format. As you may be aware, ADSBexchange is based on the excellent <a href="http://www.virtualradarserver.co.uk/" target="_blank" rel="noopener noreferrer">Virtual Radar Server</a> product by Andrew Whewell.</p>
+<p><a href="https://www.adsbexchange.com/datafields/" target="_blank" rel="noopener noreferrer">Full documentation on the query format, and the query response is available here.</a></p>
+<p>The base URL to query is: <a href="http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json" target="_blank" rel="noopener noreferrer">http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json</a> (querying this URL by itself will yield a JSON with _all_ airborne aircraft).</p>
+<p>To further filter and slice the data, use the querystrings shown in the <a href="http://www.virtualradarserver.co.uk/Documentation/Formats/AircraftList.aspx" target="_blank" rel="noopener noreferrer">documentation</a>.  For example, based on the<a href="http://www.virtualradarserver.co.uk/Documentation/Formats/AircraftList.aspx" target="_blank" rel="noopener noreferrer"> </a>above, to query all aircraft between 0 and 100 km of the lat/long of Phoenix Sky Harbor Airport, use:</p>
+<p><a href="http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=33.433638&amp;lng=-112.008113&amp;fDstL=0&amp;fDstU=100" target="_blank" rel="noopener noreferrer">http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat=33.433638&amp;lng=-112.008113&amp;fDstL=0&amp;fDstU=100</a></p>
+<p>This is a good way to get LIVE data.  If you want historical, do NOT call this JSON repeatedly and store it.  Instead, see below!</p>
+<hr />
+<h4 id="#feedvrs">Feed Live Data to your own VRS Installation</h4>
+<p>Do you run a local copy of VRS? Again, if your use is non-profit and you do not share your VRS site with the general public, feel free to make use of our data by getting a live feed of everything we have! Within VRS, go to Tools &gt; Options, click on &#8220;Receivers&#8221;, then click the green &#8220;+&#8221; to add a new receiver.  Configure it as shown below.  Depending on your bandwidth and power of your local computer, you may want to choose a different update interval.  This is done by changing the last two digits of the port number. Available options are shown below.</p>
+<p><span style="text-decoration: underline;"><strong>Important note:</strong></span> If you use this method, and you also feed us via VRS, <span style="text-decoration: underline;"><strong>please</strong></span> ensure that you are not sending our data feed back to us in your feed! It uses our (and your) resources for no reason. Thanks!  Also, please <strong>ensure that your system clock is synced reasonably well with an internet time source via NTP</strong>.</p>
+<p><img class="alignnone size-full wp-image-1865" src="https://www.adsbexchange.com/wp-content/uploads/Screenshot-Labeled.png" alt="Screenshot Labeled" width="911" height="620" srcset="https://www.adsbexchange.com/wp-content/uploads/Screenshot-Labeled.png 911w, https://www.adsbexchange.com/wp-content/uploads/Screenshot-Labeled-300x204.png 300w, https://www.adsbexchange.com/wp-content/uploads/Screenshot-Labeled-768x523.png 768w" sizes="(max-width: 911px) 100vw, 911px" /></p>
+<hr />
+<h4>Live Data via TCP Connection</h4>
+<p>To retrieve Live data via a TCP connection, connect to <strong>pub-vrs.adsbexchange.com</strong> on port 32001, or one of the ports below for a slower update rate. The 1 second update rate requires 1.5 &#8211; 2 mbps of bandwidth during busy times.</p>
+<ul>
+<li>Port 32001 &#8211; 1 second updates (realtime)</li>
+<li>Port 32005 &#8211; 5 second updates</li>
+<li>Port 32010 &#8211; 10 second updates</li>
+<li>Port 32015 &#8211; 15 second updates</li>
+<li>Port 32030 &#8211; 30 second updates</li>
+</ul>
+<hr />
+<h4>Historical Data (by date/time)</h4>
+<p>If you want to download a historical record of all data received by ADSBexchange, this is the section for you.</p>
+<p><strong>You must request access to download the JSON archive historical files.</strong>  Please use the contact form<strong> <a href="https://adsbexchange.com/contact/">here</a></strong>.</p>
+<p>Please explain your use, commercial or non-commercial or otherwise and intentions for the data, and how many days of data and how often you would like to download.  An account will be created and you will receive an email with information.  We require all use other the personal non-commercial to have a commercial data license agreement.</p>
+<p>Building on the &#8220;Querying Live Data&#8221; section above, essentially, every 60 seconds, we issue the following JSON query and store the results: http://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?trFmt=sa</p>
+<p>Essentially, this is a JSON of all aircraft, with &#8220;short trails&#8221; activated. The short trail duration used in the historical data archive is 65 seconds.  This gives all the current information on the aircraft, plus any known positions, altitudes and timestamps for the previous 65 seconds.  Since this query is issued every 60 seconds, all known positions should be captured in the data. Please consult <a href="https://www.adsbexchange.com/datafields/">this page</a> for an explanation of data field contents.</p>
+<p>This file is captured every 60 seconds, typically on the 30-second mark of any given minute. This generates 1,440 files daily, which then get zipped into a single archive per day.  The archive for the previous day is typically available by 0100Z (01:00 UTC) the following day. Data is available beginning on June 9, 2016. Daily files are currently in the neighborhood of 7.9 GB each. Transfer rates may be somewhat limited depending on the latency of your connection.</p>
+<p>For example, June 20th&#8217;s data can be downloaded at the following URL:</p>
+<p><a href="http://history.adsbexchange.com/Aircraftlist.json/2016-06-20.zip">http://history.adsbexchange.com/Aircraftlist.json/2016-06-20.zip</a></p>
+<p>Simply extrapolate the pattern for any subsequent date.</p>
+<p>For a full explanation of fields: <a href="https://www.adsbexchange.com/datafields">https://www.adsbexchange.com/datafields</a></p>
+<hr />
+<h4>Historical Data (by specific aircraft/ICAO codes)</h4>
+<p>While this data is contained in the JSON files discussed above, it is not easily searchable for a single aircraft.  Historical data for specific aircraft can be searched <a href="https://flight-data.adsbexchange.com/">here: https://flight-data.adsbexchange.com/</a>. The backend for these queries is our Amazon Redshift data warehouse (described below).<br />
+</p>
+<hr />
+<h4>SQL Query-able Amazon Redshift Database</h4>
+<p>Amazon Redshift is based on PostgreSQL. The data contained in the JSON files discussed above is also loaded into an Amazon Redshift database that can be queried with SQL syntax, or linked to any number of data analysis tools such as <a href="https://www.tableau.com/">Tableau</a>, <a href="https://redash.io/">redash.io</a>, <a href="https://chartio.com/">chartio</a>, <a href="https://powerbi.microsoft.com/">Microsoft Power BI</a>, and more.</p>
+<p>The ADSBexchange Amazon Redshift database can be queried directly via the internet. <a href="https://www.adsbexchange.com/redshift">Click here for instructions on how to connect.</a></p>
+<p>While Amazon Redshift contains the data already available in the JSON files discussed above, storing, indexing, and making this data available via Redshift does carry a non-trivial financial cost to ADSBexchange. Access to our Redshift database has an associated cost.  If you have a personal, non-profit, or commercial use in mind, please <a href="https://www.adsbexchange.com/contact/">contact us for more information</a> on getting access.</p>
+<p><a href="https://www.adsbexchange.com/datafields/">Click here for a description of some of the fields available to query</a>.  There are nearly 3 billion records and counting.</p>
+<hr />
+<hr />
+<div id="mc_embed_signup">
+<form id="mc-embedded-subscribe-form" class="validate" action="//adsbexchange.us12.list-manage.com/subscribe/post?u=6fe82ed926f43299ddf2100fd&amp;id=a42c31cd20" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
+<div id="mc_embed_signup_scroll">
+<h4>Stay informed about the ADS-B Exchange Data API</h4>
+<div class="mc-field-group">
+<p>Email Address:   <input id="mce-EMAIL" class="required email" name="EMAIL" type="email" value="" /></p>
+</div>
+<div class="mc-field-group">Usage:   <select id="mce-USAGE" class="required" name="USAGE"><option value="Personal">Personal</option><option value="Non-Profit">Non-Profit</option><option value="Commercial">Commercial</option></select></div>
+<div class="mc-field-group input-group">
+<ul style="list-style: none;">
+<li style="list-style: none;"><input id="mce-group[8317]-8317-0" checked="checked" name="group[8317][1]" type="checkbox" value="1" /><label for="mce-group[8317]-8317-0">Monthly Newsletter</label></li>
+<li style="list-style: none;"><input id="mce-group[8317]-8317-1" checked="checked" name="group[8317][2]" type="checkbox" value="2" /><label for="mce-group[8317]-8317-1">Data Feed API User</label></li>
+<li style="list-style: none;"><input id="mce-group[8317]-8317-2" name="group[8317][4]" type="checkbox" value="4" /><label for="mce-group[8317]-8317-2">I feed my receiver&#8217;s data to ADSBexchange.com</label></li>
+</ul>
+</div>
+<div id="mce-responses" class="clear"></div>
+<p></p>
+<div style="position: absolute; left: -5000px;"><input tabindex="-1" name="b_6fe82ed926f43299ddf2100fd_a42c31cd20" type="text" value="" /></div>
+<div class="clear"><input id="mc-embedded-subscribe" class="button" name="subscribe" type="submit" value="Subscribe" /></div>
+</div>
+</form>
+</div>
+<p></p>
+</div>
+</div>
+</article>
+</main>
+<aside class="sidebar sidebar-primary widget-area" role="complementary">
+<section id="text-14" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><center><table style="width:75%; border:none; padding:0px; border-spacing: 0px;"><tr style="border:none; padding:0px; border-spacing: 0px; height: 80px;"><td style="border:none; padding:0px; border-spacing: 0px; text-align:center;"><a href="http://global.adsbexchange.com/VirtualRadar"><img align=center src="/wp-content/uploads/1448946181_Radar1.png"></a></td ><td style="border:none; padding:0px; border-spacing: 0px; text-align: center; vertical-align:middle;"><a href="http://global.adsbexchange.com/VirtualRadar">
+Currently Tracking<br>8115 aircraft</a></td>
+</tr>
+<tr><td colspan=2>From 1000+ active feeds</td></tr>
+</table></center>
+</div>
+</div></section><section id="text-17" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><center><a href="https://www.adsbexchange.com/donate">
+<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="Donate" alt="PayPal - The safer, easier way to pay online!">
+</center></div>
+</div></section><section id="nav_menu-2" class="widget widget_nav_menu"><div class="widget-wrap"><div class="menu-main-menu-container"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-24"><a href="https://www.adsbexchange.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25"><a href="https://www.adsbexchange.com/how-to-feed/">How to feed</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="https://www.adsbexchange.com/how-to-feed/">Getting Started</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-899"><a href="https://www.adsbexchange.com/how-to-feed-from-vrs/">How to Feed from VRS</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2941"><a href="https://www.adsbexchange.com/how-to-feed/setup-instructions-for-rpi-kits/">Setup Instructions for RPi Kits</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17932"><a href="https://www.adsbexchange.com/how-to-feed/custom-feed-how-to/">Setup a Custom Feed</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323"><a href="https://www.adsbexchange.com/active-feeds/">Feeder Statistics</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a href="https://www.adsbexchange.com/forum/">Forum</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28"><a href="//global.adsbexchange.com/VirtualRadar">Global Radar View</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1047"><a href="//www.adsbexchange.com/currently-airborne-interesting-aircraft/">Other Tracking Info</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3399"><a href="https://flight-data.adsbexchange.com">Flight History Data</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1046"><a href="https://www.adsbexchange.com/airborne-military-aircraft/">Currently Airborne Military Aircraft</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3288"><a href="https://customglobal.adsbexchange.com/VirtualRadar/">Custom Feeds</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17933"><a href="https://www.adsbexchange.com/how-to-feed/custom-feed-how-to/">Custom Feed – How To</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1045"><a href="https://www.adsbexchange.com/currently-airborne-interesting-aircraft/">Currently Airborne “Interesting” Aircraft</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17936"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfaiXSFenmu9CPy1fscLaROARUXkqDrziiw6Iu3-GRNTW0CMg/viewform?usp=sf_link">Submit Aircraft Pictures</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1690 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1757"><a href="https://www.adsbexchange.com/data/">Data</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3396"><a href="https://www.adsbexchange.com/data">Data Downloads and API</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3397"><a href="https://www.adsbexchange.com/redshift">Redshift SQL Database</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3398"><a href="https://www.adsbexchange.com/datafields/">Data Field Descriptions</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-188"><a href="https://www.adsbexchange.com/contact/">About</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2155"><a href="https://www.adsbexchange.com/enhancements/">Future Enhancements</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-211"><a href="https://www.adsbexchange.com/donate/">Support ADSBexchange</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-207"><a href="https://www.adsbexchange.com/contact/">Contact</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1500"><a href="https://www.adsbexchange.com/legal-and-privacy/">Legal and Privacy</a></li>
+</ul>
+</li>
+</ul></div></div></section><section id="text-16" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-3888666500943436" data-ad-slot="9849975303"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div></section><section id="text-15" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-3888666500943436" data-ad-slot="4965903300"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div></section><section id="text-4" class="widget widget_text"><div class="widget-wrap"> <div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-3888666500943436" data-ad-slot="9257148904"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div></section></aside>
+</div>
+</div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+<div id="site-generator">
+<div class="wrapper">
+<div id="footer-content" class="copyright">Copyright &copy; 2018 <a href="https://www.adsbexchange.com/">ADS-B Exchange</a>. All Rights Reserved. &#124; Catch Responsive Child Theme&nbsp;by&nbsp;<a target="_blank" href="https://catchthemes.com">Catch Themes Team</a></div>
+</div>
+</div> </footer>
+</div>
+<a href="#masthead" id="scrollup" class="genericon"><span class="screen-reader-text">Scroll Up</span></a><nav id="mobile-header-left-nav" class="mobile-menu" role="navigation"><ul id="header-left-nav" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-24"><a href="https://www.adsbexchange.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-25"><a href="https://www.adsbexchange.com/how-to-feed/">How to feed</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-153"><a href="https://www.adsbexchange.com/how-to-feed/">Getting Started</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-899"><a href="https://www.adsbexchange.com/how-to-feed-from-vrs/">How to Feed from VRS</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2941"><a href="https://www.adsbexchange.com/how-to-feed/setup-instructions-for-rpi-kits/">Setup Instructions for RPi Kits</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17932"><a href="https://www.adsbexchange.com/how-to-feed/custom-feed-how-to/">Setup a Custom Feed</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1323"><a href="https://www.adsbexchange.com/active-feeds/">Feeder Statistics</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-65"><a href="https://www.adsbexchange.com/forum/">Forum</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28"><a href="//global.adsbexchange.com/VirtualRadar">Global Radar View</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1047"><a href="//www.adsbexchange.com/currently-airborne-interesting-aircraft/">Other Tracking Info</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3399"><a href="https://flight-data.adsbexchange.com">Flight History Data</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1046"><a href="https://www.adsbexchange.com/airborne-military-aircraft/">Currently Airborne Military Aircraft</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3288"><a href="https://customglobal.adsbexchange.com/VirtualRadar/">Custom Feeds</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17933"><a href="https://www.adsbexchange.com/how-to-feed/custom-feed-how-to/">Custom Feed – How To</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1045"><a href="https://www.adsbexchange.com/currently-airborne-interesting-aircraft/">Currently Airborne “Interesting” Aircraft</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17936"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfaiXSFenmu9CPy1fscLaROARUXkqDrziiw6Iu3-GRNTW0CMg/viewform?usp=sf_link">Submit Aircraft Pictures</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1690 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1757"><a href="https://www.adsbexchange.com/data/">Data</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-3396"><a href="https://www.adsbexchange.com/data">Data Downloads and API</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3397"><a href="https://www.adsbexchange.com/redshift">Redshift SQL Database</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3398"><a href="https://www.adsbexchange.com/datafields/">Data Field Descriptions</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-188"><a href="https://www.adsbexchange.com/contact/">About</a>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2155"><a href="https://www.adsbexchange.com/enhancements/">Future Enhancements</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-211"><a href="https://www.adsbexchange.com/donate/">Support ADSBexchange</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-207"><a href="https://www.adsbexchange.com/contact/">Contact</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1500"><a href="https://www.adsbexchange.com/legal-and-privacy/">Legal and Privacy</a></li>
+</ul>
+</li>
+</ul></nav>
+
+<div class="iAgreePopup">
+<div class="popupBG" style="background:#000">
+&nbsp;
+</div>
+<div class="popupContainer" style="background:#999">
+<div class="popupContent">
+<p>By accessing the data contained on ADSBexchange.com and associated sites, you agree to the following terms and conditions.</p>
+<p>ADSBexchange&#8217;s authorization to access the data grants You a limited, non-exclusive, non-transferable, non-assignable, and terminable license to copy, modify, and use the data in accordance with this AGREEMENT <strong>solely for the purpose of personal, non-profit research, non-profit education</strong> or commercial <strong>internal testing and evaluation of the data</strong>. </p>
+<p>
+No license is granted for any other purpose and there are no implied licenses in this AGREEMENT. Any commercial use of the data contained requires the written permission of ADSBexchange. This AGREEMENT shall become effective upon first access of any data via ADSBexchange.com. This AGREEMENT is subject to modification or revocation at any time at ADSBexchange&#8217;s sole discretion.</p>
+<p>
+If You create a publication (including web pages, papers published by a third party, and publicly available presentations) using data from this data set, You must provide ADSBexchance.com with a copy of (or a link to) the publication and You must cite the data as follows:</p>
+<p>
+ADSBexchange, http://www.ADSBexchange.com</p>
+<p>
+You agree to expunge any and all copies of the received data set(s) upon completion or termination of stated research and/or termination of data access or use.</p>
+<p>
+DISCLAIMER OF WARRANTIES. ADSBexchange USES ITS BEST EFFORTS TO PROVIDE ACCURATE DATA. HOWEVER, THE DATA PROVIDED HEREIN IS ON AN &#8220;AS IS&#8221; BASIS. NEITHER ADSBexchange, ITS MEMBERS, ITS OWNERS, RESEARCH PARTNERS, LICENSORS, AND DATA PROVIDERS MAKE ANY WARRANTY, EITHER IMPLIED OR EXPRESS, OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, INCLUDING, BUT NOT LIMITED TO, THE ACCURACY, TIMELINESS, COMPLETENESS, RELIABILITY, OR AVAILABILITY OF ADSBexchange DATA, APPLICATIONS, OR SERVICES ACCESSIBLE THROUGH OR MADE AVAILABLE BY ADSBexchange.</p>
+<p>
+TO THE EXTENT ALLOWED BY LAW, YOU WILL INDEMNIFY, DEFEND AND HOLD HARMLESS ADSBexchange FROM ALL LIABILITIES, CLAIMS, DEMANDS, COSTS, JUDGMENTS, DAMAGES, LOSSES AND EXPENSES ARISING OUT OF OR IN CONNECTION WITH ANY USE OF THE DATA BY YOU. IN NO EVENT SHALL ADSBexchange BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY INDIRECT, CONSEQUENTIAL, INCIDENTAL, SPECIAL OR PUNITIVE DAMAGES, ARISING FROM YOUR USE OF THE DATA.</p>
+</div>
+<div class="popupChoices">
+<div class="yesNo">
+<a href="#" class="agree popupChoiceButton" style=" background:#000; color:#FFF; ">Agree</a>
+<a href="javascript:history.back()" class="disagree popupChoiceButton" style=" background:#000; color:#FFF; ">Disagree</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+jQuery(document).ready(function($) {    
+    $('.iAgreePopup').fadeIn();
+    var popupContainerHeight = $('.iAgreePopup .popupContainer').height();
+    var popupContainerWidth = $('.iAgreePopup .popupContainer').width();
+    var popupContainerMarginTop = '-'+(popupContainerHeight / 2)+'px';
+    var popupContainerMarginLeft = '-'+(popupContainerWidth / 2)+'px';
+    $('.iAgreePopup .popupContainer').css({'margin-top':popupContainerMarginTop, 'margin-left':popupContainerMarginLeft});
+    $('.iAgreePopup .agree').click(function(){                  
+        document.cookie="rememberMe1688=yes;expires=Fri, 03 Aug 2018 13:20:42 UTC;path=/";
+        $('.iAgreePopup').fadeOut();                          
+    });              
+    $(window).resize(function(){
+        var popupContainerHeight = $('.iAgreePopup .popupContainer').height();
+        var popupContainerWidth = $('.iAgreePopup .popupContainer').width();
+        var popupContainerMarginTop = '-'+(popupContainerHeight / 2)+'px';
+        var popupContainerMarginLeft = '-'+(popupContainerWidth / 2)+'px';
+        $('.iAgreePopup .popupContainer').css({'margin-top':popupContainerMarginTop, 'margin-left':popupContainerMarginLeft});
+    });
+});
+</script>
+
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.7'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/navigation.min.js?ver=20120206'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/skip-link-focus-fix.min.js?ver=20130115'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/fitvids.min.js?ver=1.1'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/jquery.cycle/jquery.cycle2.min.js?ver=2.1.5'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-content/themes/catch-responsive/js/catchresponsive-scrollup.min.js?ver=20072014'></script>
+<script type='text/javascript' src='https://www.adsbexchange.com/wp-includes/js/wp-embed.min.js?ver=7ea90f51a940de754fba986f15780e9a'></script>
+</body>
+</html>
